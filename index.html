@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengujian Pemahaman</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-orb orb-1"></div>
+  <div class="background-orb orb-2"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <h1>Pengujian Pemahaman</h1>
+      <p>
+        Platform pretest dan posttest untuk edukasi masyarakat, mitra UMKM lidi, dan ormawa.
+      </p>
+    </header>
+
+    <nav class="page-nav" aria-label="Navigasi Halaman">
+      <button class="nav-btn active" data-target="masyarakat">Masyarakat</button>
+      <button class="nav-btn" data-target="mitra">Mitra UMKM Lidi</button>
+      <button class="nav-btn" data-target="ormawa">Ormawa</button>
+      <button class="nav-btn" data-target="laporan">Laporan</button>
+      <a class="nav-btn admin-nav-link" href="admin.html">Admin</a>
+    </nav>
+
+    <main class="content">
+      <section class="page active" id="page-masyarakat">
+        <div class="page-head">
+          <h2>Halaman Masyarakat</h2>
+          <p>
+            Kuis ini membantu warga memahami kesiapsiagaan, respons darurat, dan pemulihan pasca banjir.
+          </p>
+        </div>
+        <div class="quiz-grid" id="quiz-masyarakat"></div>
+      </section>
+
+      <section class="page" id="page-mitra">
+        <div class="page-head">
+          <h2>Halaman Mitra UMKM Lidi</h2>
+          <p>
+            Kuis ini menilai kesiapan UMKM lidi menghadapi banjir agar operasional tetap berjalan.
+          </p>
+        </div>
+        <div class="quiz-grid" id="quiz-mitra"></div>
+      </section>
+
+      <section class="page" id="page-ormawa">
+        <div class="page-head">
+          <h2>Halaman Ormawa</h2>
+          <p>
+            Kuis ini mengukur pemahaman ormawa dalam pendekatan sosial dan pendampingan masyarakat.
+          </p>
+        </div>
+        <div class="quiz-grid" id="quiz-ormawa"></div>
+      </section>
+
+      <section class="page" id="page-laporan">
+        <div class="page-head">
+          <h2>Halaman Laporan</h2>
+          <p>Rekap hasil pretest dan posttest seluruh peserta.</p>
+        </div>
+
+        <div class="toolbar">
+          <label>
+            Filter Peran
+            <select id="filter-role">
+              <option value="all">Semua</option>
+              <option value="masyarakat">Masyarakat</option>
+              <option value="mitra">Mitra UMKM Lidi</option>
+              <option value="ormawa">Ormawa</option>
+            </select>
+          </label>
+          <label>
+            Filter Tes
+            <select id="filter-test">
+              <option value="all">Semua</option>
+              <option value="pretest">Pretest</option>
+              <option value="posttest">Posttest</option>
+            </select>
+          </label>
+          <label>
+            Cari Nama
+            <input type="text" id="filter-name" placeholder="Ketik nama peserta">
+          </label>
+          <button id="export-csv">Ekspor CSV</button>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card">
+            <h3>Total Percobaan</h3>
+            <p id="stat-total">0</p>
+          </article>
+          <article class="summary-card">
+            <h3>Peserta Unik</h3>
+            <p id="stat-unique">0</p>
+          </article>
+          <article class="summary-card">
+            <h3>Rata-rata Skor</h3>
+            <p id="stat-average">0%</p>
+          </article>
+        </div>
+
+        <div class="role-summary-grid" id="role-summary"></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Waktu</th>
+                <th>Nama</th>
+                <th>Peran</th>
+                <th>Tipe Tes</th>
+                <th>Skor</th>
+                <th>Benar</th>
+              </tr>
+            </thead>
+            <tbody id="report-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

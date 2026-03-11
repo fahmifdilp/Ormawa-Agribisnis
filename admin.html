@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Pengujian Pemahaman</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-orb orb-1"></div>
+  <div class="background-orb orb-2"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <h1>Admin Pengujian Pemahaman</h1>
+      <p>Halaman ini khusus admin untuk mengelola laporan hasil dan bank soal.</p>
+    </header>
+
+    <nav class="page-nav" aria-label="Navigasi Admin">
+      <a class="nav-btn" href="index.html">Kembali ke Pengujian</a>
+    </nav>
+
+    <main class="content">
+      <section class="page active">
+        <div class="page-head">
+          <h2>Panel Admin</h2>
+        </div>
+
+        <article class="auth-card" id="admin-login-card">
+          <h3>Login Admin</h3>
+          <form id="admin-login-form">
+            <label for="admin-email">Email Admin</label>
+            <input type="email" id="admin-email" required placeholder="contoh@domain.com">
+
+            <label for="admin-password">Password</label>
+            <input type="password" id="admin-password" required placeholder="Masukkan password">
+
+            <button type="submit" id="admin-login-btn">Masuk</button>
+            <p class="result-note error" id="admin-login-error" hidden></p>
+          </form>
+        </article>
+
+        <section id="admin-panel" hidden>
+          <div class="admin-header">
+            <p class="admin-user">Login sebagai: <strong id="admin-user-email">-</strong></p>
+            <button id="admin-logout-btn" class="danger">Logout</button>
+          </div>
+
+          <div class="toolbar">
+            <label>
+              Filter Peran
+              <select id="admin-filter-role">
+                <option value="all">Semua</option>
+                <option value="masyarakat">Masyarakat</option>
+                <option value="mitra">Mitra UMKM Lidi</option>
+                <option value="ormawa">Ormawa</option>
+              </select>
+            </label>
+            <label>
+              Filter Tes
+              <select id="admin-filter-test">
+                <option value="all">Semua</option>
+                <option value="pretest">Pretest</option>
+                <option value="posttest">Posttest</option>
+              </select>
+            </label>
+            <label>
+              Cari Nama
+              <input type="text" id="admin-filter-name" placeholder="Ketik nama peserta">
+            </label>
+            <button id="admin-refresh-btn" type="button">Refresh</button>
+            <button id="admin-export-btn" type="button">Ekspor CSV</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>Nama</th>
+                  <th>Peran</th>
+                  <th>Tipe Tes</th>
+                  <th>Benar</th>
+                  <th>Total</th>
+                  <th>Skor</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="admin-report-body"></tbody>
+            </table>
+          </div>
+
+          <div class="admin-block">
+            <div class="section-head">
+              <h3>Manajemen Soal</h3>
+              <p>Soal pretest dan posttest sama. Admin dapat menambah, mengedit, dan menghapus soal.</p>
+            </div>
+
+            <div class="toolbar">
+              <label>
+                Peran Soal
+                <select id="question-role-filter">
+                  <option value="all">Semua</option>
+                  <option value="masyarakat">Masyarakat</option>
+                  <option value="mitra">Mitra UMKM Lidi</option>
+                  <option value="ormawa">Ormawa</option>
+                </select>
+              </label>
+              <button id="question-refresh-btn" type="button">Refresh Soal</button>
+              <button id="question-add-btn" type="button">Tambah Soal</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Peran</th>
+                    <th>Urutan</th>
+                    <th>Pertanyaan</th>
+                    <th>Opsi A</th>
+                    <th>Opsi B</th>
+                    <th>Opsi C</th>
+                    <th>Opsi D</th>
+                    <th>Jawaban</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="question-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
